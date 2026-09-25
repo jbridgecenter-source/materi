@@ -26,7 +26,8 @@ const F = {
 function build(cfg, out) {
   const pres = new pptxgen();
   pres.layout = "LAYOUT_16x9";
-  pres.title = `Minna no Nihongo I - Bab ${cfg.bab} - Tata Bahasa`;
+  const BOOK = cfg.book || "Minna no Nihongo I";
+  pres.title = `${BOOK} - Bab ${cfg.bab} - Tata Bahasa`;
 
   const shadow = () => ({ type: "outer", color: "000000", blur: 6, offset: 2, angle: 90, opacity: 0.18 });
 
@@ -52,9 +53,11 @@ function build(cfg, out) {
     s.background = { color: C.navy };
     logoBox(s);
     pill(s, `BAB ${cfg.bab} · TATA BAHASA`, C.gold, C.navy, 0.52);
+    let titleSize = 44;
+    while (titleSize > 28 && cfg.title.length * 0.62 * titleSize > 8.3 * 72) titleSize -= 1;
     s.addText(cfg.title, {
       x: 0.6, y: 1.9, w: 8.3, h: 0.9, margin: 0,
-      fontFace: FONT, fontSize: 44, bold: true, color: C.white, isTextBox: true,
+      fontFace: FONT, fontSize: titleSize, bold: true, color: C.white, isTextBox: true,
     });
     s.addText(cfg.titleJp, {
       x: 0.67, y: 2.85, w: 8.3, h: 0.55, margin: 0,
@@ -111,7 +114,7 @@ function build(cfg, out) {
       { text: p.arti, options: { bold: true, color: C.green, fontSize: 11 } },
     ], { x: 0.94, y: 4.76, w: 8.2, h: 0.26, margin: 0, fontFace: FONT, valign: "middle", isTextBox: true });
 
-    s.addText(`Minna no Nihongo I  ·  Bab ${cfg.bab} · ${cfg.title}`, {
+    s.addText(`${BOOK}  ·  Bab ${cfg.bab} · ${cfg.title}`, {
       x: 0.67, y: 5.3, w: 5, h: 0.2, margin: 0,
       fontFace: FONT, fontSize: 8, color: C.footer, isTextBox: true,
     });
