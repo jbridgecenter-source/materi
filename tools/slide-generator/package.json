@@ -1,0 +1,12 @@
+{
+  "name": "jbridge-slide-generator",
+  "private": true,
+  "description": "Builds JBridge Center grammar slide decks (.pptx) from chapter data",
+  "scripts": {
+    "minna1": "node build-minna1.js",
+    "minna1-bab2": "node build-minna1-bab2.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}
