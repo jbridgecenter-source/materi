@@ -31,16 +31,16 @@ LOGO = str(ROOT / "logo_jbridgecenter.png")
 
 patterns = [
     ("1", "KB1 wa KB2 desu", "A adalah B", "watashi wa Budi desu", "Saya (adalah) Budi."),
-    ("2", "KB1 wa KB2 ja arimasen", "bukan", "Andi-san wa gakusei ja arimasen", "Sdr. Andi bukan mahasiswa."),
-    ("3", "KB1 wa KB2 desu ka", "kalimat tanya", "Budi-san wa Indoneshia-jin desu ka", "Apakah Sdr. Budi orang Indonesia?"),
-    ("4", "KB mo KB desu", "juga", "Andi-san mo kaishain desu", "Sdr. Andi juga pegawai perusahaan."),
-    ("5", "KB1 no KB2", "kepunyaan/asal", "Budi-san wa JBridge Center no shain desu", "Sdr. Budi pegawai JBridge Center."),
-    ("6", "Nama + san", "panggilan sopan", "ano kata wa Budi-san desu", "Beliau (adalah) Sdr. Budi."),
+    ("2", "KB1 wa KB2 ja arimasen", "bukan", "Andi-san wa gakusei ja arimasen", "Andi bukan mahasiswa."),
+    ("3", "KB1 wa KB2 desu ka", "kalimat tanya", "Budi-san wa Indoneshia-jin desu ka", "Apakah Budi orang Indonesia?"),
+    ("4", "KB mo KB desu", "juga", "Andi-san mo kaishain desu", "Andi juga pegawai perusahaan."),
+    ("5", "KB1 no KB2", "kepunyaan/asal", "Budi-san wa JBridge Center no shain desu", "Budi pegawai JBridge Center."),
+    ("6", "Nama + san", "panggilan sopan", "ano kata wa Budi-san desu", "Beliau (adalah) Budi."),
 ]
 
 kosakata = [
     ("watashi", "saya"), ("anata", "Anda"), ("ano hito", "orang itu"), ("ano kata", "beliau"),
-    ("~san", "Sdr./Bpk/Ibu ~"), ("~chan", "sapaan akrab anak"), ("~jin", "orang ~ (WN)"),
+    ("~san", "Bpk/Ibu ~"), ("~chan", "sapaan akrab anak"), ("~jin", "orang ~ (WN)"),
     ("sensei", "guru/dosen"), ("kyoushi", "guru/dosen"), ("gakusei", "mahasiswa"),
     ("kaishain", "karyawan"), ("shain", "karyawan (+nama PT)"), ("ginkouin", "pegawai bank"),
     ("isha", "dokter"), ("kenkyuusha", "peneliti"), ("daigaku", "universitas"),
@@ -55,7 +55,7 @@ ungkapan = [
     ("douzo yoroshiku onegaishimasu", "Salam kenal."),
     ("shitsurei desu ga", "permisi, maaf"),
     ("onamae wa?", "Siapa namanya?"),
-    ("kochira wa ~san desu", "Ini Bapak/Ibu/Sdr. ~"),
+    ("kochira wa ~san desu", "Ini Bapak/Ibu ~"),
 ]
 
 negara = [
