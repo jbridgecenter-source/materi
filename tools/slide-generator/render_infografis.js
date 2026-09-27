@@ -20,5 +20,6 @@ const { chromium } = require("playwright-core");
   await page.waitForTimeout(200);
   await page.screenshot({ path: outPng, fullPage: true });
   await browser.close();
+  fs.unlinkSync(tmp);
   console.log("wrote", outPng);
 })();
