@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'JP'; src: local('IPAGothic'); }
+  :root{
+    --navy:#072142; --navy2:#0d2e57; --gold:#EDAE2F; --goldtext:#F5C55A;
+    --ink:#1A2433; --body:#2A3340; --cream:#FCFAF2; --light:#F3F7FB;
+    --green:#1F8A5B; --red:#EF4F4F; --blue:#2F7FD6; --purple:#8B5CF6;
+    --san:#D4912A; --line:#DCE3EA;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    width:1080px; font-family: Arial, "IPAGothic", sans-serif; color:var(--ink);
+    background:#fff;
+  }
+  .jp{ font-family:"IPAGothic", Arial, sans-serif; }
+
+  /* HEADER */
+  .header{
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+    padding:44px 56px 40px 56px; position:relative; overflow:hidden;
+  }
+  .header::after{
+    content:""; position:absolute; right:-60px; top:-60px; width:280px; height:280px;
+    border-radius:50%; background: rgba(237,174,47,0.08);
+  }
+  .header::before{
+    content:""; position:absolute; right:80px; bottom:-90px; width:180px; height:180px;
+    border-radius:50%; background: rgba(255,255,255,0.05);
+  }
+  .pill{
+    display:inline-block; background:var(--gold); color:var(--navy); font-weight:700;
+    font-size:13px; padding:7px 16px; border-radius:14px; letter-spacing:.5px;
+  }
+  .logo-box{
+    position:absolute; right:56px; top:40px; background:#fff; width:64px; height:64px;
+    border-radius:12px; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .logo-box img{ width:48px; height:48px; }
+  .header h1{ color:#fff; font-size:40px; margin-top:18px; font-weight:800; position:relative; z-index:1;}
+  .header .jpline{ color:var(--goldtext); font-size:22px; margin-top:6px; font-weight:700; position:relative; z-index:1;}
+  .header p{ color:#C9D6E8; font-size:15px; margin-top:12px; max-width:640px; position:relative; z-index:1;}
+
+  /* SECTION LABEL */
+  .sec{ padding:0 56px; }
+  .sec-title{
+    display:flex; align-items:center; gap:10px; margin:40px 0 22px 0;
+  }
+  .sec-num{
+    width:30px; height:30px; border-radius:50%; background:var(--navy); color:#fff;
+    font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;
+  }
+  .sec-title h2{ font-size:21px; color:var(--navy); font-weight:800; }
+
+  /* TIMELINE PATTERNS */
+  .timeline{ position:relative; padding-left:44px; }
+  .timeline::before{
+    content:""; position:absolute; left:19px; top:8px; bottom:8px; width:3px;
+    background: repeating-linear-gradient(to bottom, var(--gold) 0 8px, transparent 8px 14px);
+  }
+  .step{ position:relative; margin-bottom:22px; }
+  .step-dot{
+    position:absolute; left:-44px; top:2px; width:40px; height:40px; border-radius:50%;
+    background:var(--gold); color:var(--navy); font-weight:800; font-size:16px;
+    display:flex; align-items:center; justify-content:center; border:4px solid #fff;
+    box-shadow:0 0 0 2px var(--gold);
+  }
+  .step-card{
+    background:var(--light); border-radius:12px; padding:16px 20px; border:1px solid var(--line);
+  }
+  .step-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+  .step-head .formula{ font-size:17px; font-weight:800; color:var(--ink); }
+  .step-head .tag{ font-size:12.5px; font-weight:700; color:var(--san); font-style:italic; }
+  .step-desc{ font-size:13px; color:var(--body); line-height:1.5; margin-bottom:10px; }
+  .step-ex{
+    background:#fff; border-radius:8px; padding:10px 14px; border-left:4px solid var(--gold);
+  }
+  .step-ex .jpx{ font-size:15px; font-weight:700; color:var(--ink); }
+  .step-ex .rmj{ font-size:11.5px; color:#8A929C; font-style:italic; margin-top:2px; }
+  .step-ex .art{ font-size:12.5px; color:var(--green); font-weight:700; }
+  .kw{ color:var(--blue); font-weight:800;} .kp{color:var(--red); font-weight:800;} .kd{color:var(--purple); font-weight:800;}
+
+  /* VOCAB GRID */
+  .vocab-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+  .vocab-card{
+    background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px;
+  }
+  .vocab-card .icon{
+    width:38px; height:38px; border-radius:10px; background:var(--navy); display:flex;
+    align-items:center; justify-content:center; margin-bottom:10px;
+  }
+  .vocab-card .icon svg{ width:20px; height:20px; }
+  .vocab-card h3{ font-size:14px; color:var(--navy); font-weight:800; margin-bottom:8px; }
+  .vocab-card .row{ display:flex; justify-content:space-between; font-size:11.5px; padding:3px 0; border-bottom:1px dashed var(--line); }
+  .vocab-card .row:last-child{ border-bottom:none; }
+  .vocab-card .rn{ font-weight:700; color:var(--ink); }
+  .vocab-card .ra{ color:var(--body); }
+
+  /* PHRASES STRIP */
+  .phrases{ display:flex; flex-wrap:wrap; gap:10px; }
+  .phrase{
+    background:var(--cream); border-radius:20px; padding:9px 16px; font-size:12.5px;
+    display:flex; gap:8px; align-items:center;
+  }
+  .phrase b{ color:var(--navy); }
+  .phrase span{ color:var(--green); font-weight:700; }
+
+  /* FOOTER */
+  .footer{
+    margin-top:46px; padding:20px 56px; background:var(--navy); color:#9AA3AE; font-size:11.5px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .footer b{ color:#fff; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <span class="pill">INFOGRAFIS · MINNA 1 · BAB 1</span>
+    <div class="logo-box"><img src="LOGO_SRC"></div>
+    <h1>Perkenalan Diri</h1>
+    <div class="jpline jp">じこしょうかい ・ 自己紹介</div>
+    <p>は dibaca "ha" tapi jadi "wa"? Kenalan sama 6 pola kalimat dasar dan kosakata perkenalan diri dalam bahasa Jepang.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><div class="sec-num">1</div><h2>6 Pola Kalimat Dasar</h2></div>
+    <div class="timeline">
+
+      <div class="step">
+        <div class="step-dot">1</div>
+        <div class="step-card">
+          <div class="step-head"><span class="formula"><span class="kw">KB1</span> + は + <span class="kw">KB2</span> + です</span><span class="tag">A adalah B</span></div>
+          <div class="step-desc">Pola paling dasar. Partikel は ditulis "ha" tapi <b>dibaca "wa"</b> saat jadi penanda topik. です membuat kalimat sopan.</div>
+          <div class="step-ex">
+            <div class="jpx">わたしはブディです。</div>
+            <div class="rmj">watashi wa Budi desu</div>
+            <div class="art">→ Saya (adalah) Budi.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">2</div>
+        <div class="step-card">
+          <div class="step-head"><span class="formula"><span class="kw">KB1</span> + は + <span class="kw">KB2</span> + じゃ ありません</span><span class="tag">bukan</span></div>
+          <div class="step-desc">Tukar です jadi じゃ ありません untuk bilang "bukan". Versi formal/tulisan: では ありません.</div>
+          <div class="step-ex">
+            <div class="jpx">アンディさんはがくせいじゃ ありません。</div>
+            <div class="rmj">Andi-san wa gakusei ja arimasen</div>
+            <div class="art">→ Andi bukan mahasiswa.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">3</div>
+        <div class="step-card">
+          <div class="step-head"><span class="formula"><span class="kw">KB1</span> + は + <span class="kw">KB2</span> + です + か</span><span class="tag">kalimat tanya</span></div>
+          <div class="step-desc">Tempelkan か di ujung kalimat, naikkan nada di akhir. Jawab はい (ya) atau いいえ (tidak).</div>
+          <div class="step-ex">
+            <div class="jpx">ブディさんはインドネシアじんですか。</div>
+            <div class="rmj">Budi-san wa Indoneshia-jin desu ka</div>
+            <div class="art">→ Apakah Budi orang Indonesia?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">4</div>
+        <div class="step-card">
+          <div class="step-head"><span class="formula"><span class="kw">KB</span> + も + <span class="kw">KB</span> + です</span><span class="tag">juga</span></div>
+          <div class="step-desc">も artinya "juga", dipakai kalau keterangan orang kedua sama dengan orang pertama. は diganti も.</div>
+          <div class="step-ex">
+            <div class="jpx">アンディさんもかいしゃいんです。</div>
+            <div class="rmj">Andi-san mo kaishain desu</div>
+            <div class="art">→ Andi juga pegawai perusahaan.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">5</div>
+        <div class="step-card">
+          <div class="step-head"><span class="formula"><span class="kw">KB1</span> + の + <span class="kw">KB2</span></span><span class="tag">kepunyaan / asal</span></div>
+          <div class="step-desc">の itu "lem" penyambung dua kata benda. KB1 menerangkan KB2 — bisa berarti milik, asal, atau bagian.</div>
+          <div class="step-ex">
+            <div class="jpx">ブディさんはJBridge Centerのしゃいんです。</div>
+            <div class="rmj">Budi-san wa JBridge Center no shain desu</div>
+            <div class="art">→ Budi pegawai (dari) JBridge Center.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-dot">6</div>
+        <div class="step-card">
+          <div class="step-head"><span class="formula">Nama Orang + さん</span><span class="tag">panggilan sopan</span></div>
+          <div class="step-desc">さん itu panggilan sopan di belakang nama orang (mirip Bapak/Ibu/Kak). JANGAN dipakai untuk diri sendiri.</div>
+          <div class="step-ex">
+            <div class="jpx">あの かたはブディさんです。</div>
+            <div class="rmj">ano kata wa Budi-san desu</div>
+            <div class="art">→ Beliau (adalah) Budi.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><div class="sec-num">2</div><h2>Kosakata Perkenalan Diri</h2></div>
+    <div class="vocab-grid">
+
+      <div class="vocab-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#EDAE2F" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+        <h3>Orang</h3>
+        <div class="row"><span class="rn">watashi</span><span class="ra">saya</span></div>
+        <div class="row"><span class="rn">anata</span><span class="ra">Anda</span></div>
+        <div class="row"><span class="rn">ano hito</span><span class="ra">orang itu</span></div>
+        <div class="row"><span class="rn">ano kata</span><span class="ra">beliau</span></div>
+        <div class="row"><span class="rn">dare</span><span class="ra">siapa</span></div>
+        <div class="row"><span class="rn">donata</span><span class="ra">siapa (sopan)</span></div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#EDAE2F" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+        <h3>Pekerjaan</h3>
+        <div class="row"><span class="rn">sensei</span><span class="ra">guru/dosen</span></div>
+        <div class="row"><span class="rn">gakusei</span><span class="ra">mahasiswa</span></div>
+        <div class="row"><span class="rn">kaishain</span><span class="ra">karyawan</span></div>
+        <div class="row"><span class="rn">ginkouin</span><span class="ra">pegawai bank</span></div>
+        <div class="row"><span class="rn">isha</span><span class="ra">dokter</span></div>
+        <div class="row"><span class="rn">kenkyuusha</span><span class="ra">peneliti</span></div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#EDAE2F" stroke-width="2"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>Tempat &amp; Lainnya</h3>
+        <div class="row"><span class="rn">daigaku</span><span class="ra">universitas</span></div>
+        <div class="row"><span class="rn">byouin</span><span class="ra">rumah sakit</span></div>
+        <div class="row"><span class="rn">~sai</span><span class="ra">~ tahun</span></div>
+        <div class="row"><span class="rn">nansai</span><span class="ra">umur berapa</span></div>
+        <div class="row"><span class="rn">hai</span><span class="ra">ya</span></div>
+        <div class="row"><span class="rn">iie</span><span class="ra">tidak/bukan</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><div class="sec-num">3</div><h2>Ungkapan Wajib Tahu</h2></div>
+    <div class="phrases">
+      <div class="phrase"><b>hajimemashite</b><span>Perkenalkan.</span></div>
+      <div class="phrase"><b>~kara kimashita</b><span>datang/berasal dari ~</span></div>
+      <div class="phrase"><b>douzo yoroshiku onegaishimasu</b><span>Salam kenal.</span></div>
+      <div class="phrase"><b>shitsurei desu ga</b><span>permisi, maaf</span></div>
+      <div class="phrase"><b>onamae wa?</b><span>Siapa namanya?</span></div>
+      <div class="phrase"><b>kochira wa ~san desu</b><span>Ini Bapak/Ibu ~</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div><b>JBridge Center</b> · Minna no Nihongo I · Bab 1: Perkenalan Diri</div>
+    <div>Infografis untuk latihan mandiri</div>
+  </div>
+
+</body>
+</html>

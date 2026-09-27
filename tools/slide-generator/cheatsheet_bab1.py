@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
@@ -24,8 +25,9 @@ RULE = (0xDD/255, 0xE2/255, 0xE8/255)
 
 W, H = A4
 MARGIN = 26
-OUT = "/root/qa/Cheatsheet_Minna1_Bab1.pdf"
-LOGO = "/home/user/materi/logo_jbridgecenter.png"
+ROOT = Path(__file__).resolve().parent.parent.parent
+OUT = os.environ.get("OUT") or str(ROOT / "Modul Minna 1" / "Bab 1" / "26. Minna 1 Cheatsheet Bab 1.pdf")
+LOGO = str(ROOT / "logo_jbridgecenter.png")
 
 patterns = [
     ("1", "KB1 wa KB2 desu", "A adalah B", "watashi wa Budi desu", "Saya (adalah) Budi."),
