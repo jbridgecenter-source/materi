@@ -7,6 +7,7 @@
     "minna1-bab2": "node build-minna1-bab2.js"
   },
   "dependencies": {
+    "playwright-core": "^1.63.0",
     "pptxgenjs": "^4.0.1"
   }
 }
