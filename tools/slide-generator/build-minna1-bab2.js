@@ -7,6 +7,7 @@ const part = (t) => F.t(t, C.red);
 
 const cfg = {
   bab: 2,
+  file: "27",
   title: "Kata Tunjuk Benda",
   titleJp: "これ・それ・あれ",
   hook: "\"Ini\", \"itu\", dan \"itu\" — kok beda-beda? Rahasianya ada di jarak.",
@@ -73,6 +74,10 @@ const cfg = {
   ],
 };
 
-const out = process.argv[2] ||
-  path.join(__dirname, "..", "..", "Modul Minna 1", "Bab 2", "27. Minna 1 Tata Bahasa Bab 2 - Slide.pptx");
-build(cfg, out).then((f) => console.log("wrote", f));
+module.exports = cfg;
+
+if (require.main === module) {
+  const out = process.argv[2] ||
+    path.join(__dirname, "..", "..", "Modul Minna 1", "Bab 2", "27. Minna 1 Tata Bahasa Bab 2 - Slide.pptx");
+  build(cfg, out).then((f) => console.log("wrote", f));
+}
